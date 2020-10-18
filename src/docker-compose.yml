@@ -1,0 +1,16 @@
+# composeファイル形式のフォーマット形式のversion
+version: '3'
+
+# service=アプリケーションを動かすための各要素
+# コンテナの設定、コンテナから作られるserviceをネストして記述する
+services:
+  app:                                                            #
+    image: golang:latest                                          # コンテナの作成元イメージを指定
+    container_name: "todo"                                        # コンテナの名前を指定
+    tty: true                                                     # コンテナを継続して立ち上げる(docker run -tオプションに相当）
+    volumes:                                                      # ホストのディレクトリをコンテナにマウントする
+      - .:/go/src/github.com/hanadaUG/go-gin-gorm-todo-app        # ホスト : コンテナ
+    ports:
+      - "8080:8080"                                               # 外部公開ポート番号 : コンテナのポート番号
+    working_dir: /go/src/github.com/hanadaUG/go-gin-gorm-todo-app # コンテナ実行時の作業ディレクトリを指定
+    command: go run main.go

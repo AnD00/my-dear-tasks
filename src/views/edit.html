@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOアプリ(Golang * gin * gorm)</title>
+</head>
+<body>
+<form action="/update/{{.task.ID}}" method="POST">
+    <input type="text" name="text" value="{{.task.Text}}"><br>
+    <select name="status">
+        <option value="1" {{if eq .task.Status 1}}selected{{end}}>OPEN</option>
+        <option value="2" {{if eq .task.Status 2}}selected{{end}}>DOING</option>
+        <option value="3" {{if eq .task.Status 3}}selected{{end}}>CLOSE</option>
+    </select>
+    <input type="submit" value="更新">
+</form>
+</body>
+</html>
